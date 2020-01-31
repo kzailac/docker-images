@@ -1,8 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
-set -e
+set -ex
 
 REGISTRY="argo.registry:5000"
+BRANCH=$1
 
 for d in */ ; do
     cd $d
@@ -18,7 +19,10 @@ for d in */ ; do
     docker tag $REGISTRY/$IMAGE:latest $REGISTRY/$IMAGE:$VERSION
     
     # Push to docker registry
-    docker push $REGISTRY/$IMAGE:$VERSION
-    docker push $REGISTRY/$IMAGE:latest
+    if [ "$BRANCH" == "master" ]; then
+        echo ">>> Pushing image to docker registry"
+        docker push $REGISTRY/$IMAGE:$VERSION
+        docker push $REGISTRY/$IMAGE:latest
+    fi
     cd ..
 done
