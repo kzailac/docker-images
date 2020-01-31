@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 REGISTRY="argo.registry:5000"
 BRANCH=`git symbolic-ref --short -q HEAD`
