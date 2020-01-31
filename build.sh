@@ -3,7 +3,7 @@
 set -ex
 
 REGISTRY="argo.registry:5000"
-BRANCH=`git symbolic-ref --short -q HEAD`
+BRANCH=$1
 
 for d in */ ; do
     cd $d
