@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build...'
-                sh './build.sh $env.BRANCH_NAME'
+                sh "./build.sh ${env.BRANCH_NAME}"
             }
         }
     }
