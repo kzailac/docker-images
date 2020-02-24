@@ -8,15 +8,14 @@ COPY files/etc/argo.repo /etc/yum.repos.d/argo.repo
 COPY files/tmp /tmp
 COPY files/etc/rpm-repo.conf /root/scripts/rpm-repo.conf
 COPY files/scripts/scp-upload.sh /root/scripts/scp-upload.sh
-ADD https://raw.githubusercontent.com/kevangel79/jenkins-docker-rpm-builder/feature/DEVOPS-54-packaging-script/pipeline/build-rpm.sh /root/scripts/build-rpm.sh
 
 # Init yum and go
 RUN sed -i.original -e 's/^/#/' /etc/yum.repos.d/*.repo
 RUN rpm --import /tmp/*.pub && \
-    chmod 755 /root/scripts/build-rpm.sh && \
     useradd jenkins && \
-    mkdir -p /home/jenkins/workspace/go/src && \
-    cp /root/scripts/build-rpm.sh /home/jenkins
+    mkdir -p /home/jenkins/workspace/go/src
+
+COPY ../utils/build-rpm.sh /home/jenkins/build-rpm.sh
 
 # Install Packages
 RUN yum clean metadata && yum update && \
