@@ -8,11 +8,17 @@ This repo contains the docker images used for building argo project packages.
 - Each directory MUST contain a Dockerfile
 - Each folder MUST contain a VERSION file and we should follow [Semantic Versioning](https://semver.org/) for every new change
 - build.sh builds every image and push it to our private registry when built on Jenkins
+- Build take place in the top level directory of this repo since we need to use common folders such as 'utils'
 
 # Build Locally
-Clone current repo and cd in it.
-Then:
+Clone current repo and type the command bellow from docker-images directory.
+
 ```
-cd <directory-image>
-docker build . --tag <name>
+docker build -f <directory-image>/Dockerfile --tag <name> -
+```
+
+Or if you want all images run
+
+```
+./build.sh
 ```
