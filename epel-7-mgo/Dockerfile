@@ -2,18 +2,20 @@ FROM centos:centos7
 MAINTAINER Themis Zamani themiszamani@gmail.com
 
 # Copy files to docker image
-COPY files/etc/yum.conf /etc/
-COPY files/etc/rpm/macros.drb /etc/rpm/macros.drb
-COPY files/etc/argo.repo /etc/yum.repos.d/argo.repo
-COPY files/tmp /tmp
-COPY files/etc/rpm-repo.conf /root/scripts/rpm-repo.conf
-COPY files/scripts/scp-upload.sh /root/scripts/scp-upload.sh
+COPY epel-7-mgo/files/etc/yum.conf /etc/
+COPY epel-7-mgo/files/etc/rpm/macros.drb /etc/rpm/macros.drb
+COPY epel-7-mgo/files/etc/argo.repo /etc/yum.repos.d/argo.repo
+COPY epel-7-mgo/files/tmp /tmp
+COPY epel-7-mgo/files/etc/rpm-repo.conf /root/scripts/rpm-repo.conf
+COPY epel-7-mgo/files/scripts/scp-upload.sh /root/scripts/scp-upload.sh
 
 # Init yum and go
 RUN sed -i.original -e 's/^/#/' /etc/yum.repos.d/*.repo
-RUN rpm --import /tmp/*.pub &&\
+RUN rpm --import /tmp/*.pub && \
     useradd jenkins && \
     mkdir -p /home/jenkins/workspace/go/src
+
+COPY utils/build-rpm.sh /home/jenkins/build-rpm.sh
 
 # Install Packages
 RUN yum clean metadata && yum update && \

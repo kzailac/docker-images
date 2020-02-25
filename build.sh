@@ -6,16 +6,18 @@ REGISTRY="argo.registry:5000"
 BRANCH=$1
 
 for d in */ ; do
-    cd $d
-    echo '>>> Change directory to: ' `pwd`
+    if [[ "$d" == "utils/" ]]; then
+        continue;
+    fi
+    echo '>>> Build Image: ' $d
 
     # Get version and image name
-    VERSION=`cat VERSION`
-    IMAGE=`pwd | sed 's#.*/##'`
+    VERSION=`cat $d/VERSION`
+    IMAGE=`echo ${d%/}`
     echo '>>> Image:' $IMAGE:$VERSION
 
     # Build Docker image and tag version
-    docker build . -t $REGISTRY/$IMAGE:latest
+    docker build -f $IMAGE/Dockerfile . -t $REGISTRY/$IMAGE:latest
     docker tag $REGISTRY/$IMAGE:latest $REGISTRY/$IMAGE:$VERSION
     
     # Push to docker registry
@@ -24,5 +26,4 @@ for d in */ ; do
         docker push $REGISTRY/$IMAGE:$VERSION
         docker push $REGISTRY/$IMAGE:latest
     fi
-    cd ..
 done
