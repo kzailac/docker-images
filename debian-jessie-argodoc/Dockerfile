@@ -1,7 +1,8 @@
 FROM debian:jessie
 
-RUN apt-get update && apt-get install -y --no-install-recommends git python-pip make && \
-    pip install -U pip setuptools && \
+RUN apt-get update && apt-get install -y git python-pip make && \
+    pip install -U pip && \
+    pip install -Iv setuptools==44.0.0 && \
     useradd newgrnetci
 RUN pip install pytest \
                 pytest-cov mock \
