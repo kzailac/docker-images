@@ -17,12 +17,14 @@ for d in */ ; do
     echo '>>> Image:' $IMAGE:$VERSION
 
     # Build Docker image and tag version
-    docker build -f $IMAGE/Dockerfile . -t $REGISTRY/$IMAGE:latest
-    docker tag $REGISTRY/$IMAGE:latest $REGISTRY/$IMAGE:$VERSION
+    docker build -f $IMAGE/Dockerfile . -t $IMAGE:latest
+    docker tag $IMAGE:latest $IMAGE:$VERSION
     
     # Push to docker registry
     if [ "$BRANCH" == "master" ]; then
         echo ">>> Pushing image to docker registry"
+        docker tag $IMAGE:latest $REGISTRY/$IMAGE:latest
+        docker tag $IMAGE:$VERSION $REGISTRY/$IMAGE:$VERSION
         docker push $REGISTRY/$IMAGE:$VERSION
         docker push $REGISTRY/$IMAGE:latest
     fi
