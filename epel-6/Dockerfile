@@ -13,7 +13,7 @@ RUN yum clean metadata && yum update && \
     epel-release \
     openssh-clients \
     yum-utils \
-    gcc && \
+    gcc; yum clean all && \
     useradd -m jenkins
 COPY utils/build-rpm.sh /home/jenkins/build-rpm.sh
 RUN su - jenkins rpmdev-setuptree
