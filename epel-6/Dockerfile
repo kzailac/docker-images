@@ -4,8 +4,7 @@ MAINTAINER dvrcic@srce.hr
 COPY epel-6/files/etc/rpm-repo.conf /root/scripts/rpm-repo.conf
 COPY epel-6/files/scripts/scp-upload.sh /root/scripts/scp-upload.sh
 COPY epel-6/files/tmp /tmp
-RUN rpm --import /tmp/*.pub && \
-    useradd -m jenkins
+RUN rpm --import /tmp/*.pub
 COPY utils/build-rpm.sh /home/jenkins/build-rpm.sh
 RUN yum clean all && yum -y install \ 
     centos-release-scl \
@@ -28,4 +27,5 @@ RUN scl enable python27 'pip install -U pip setuptools'
 RUN scl enable python27 'pip install mock httmock coverage tox requests pytest'
 RUN scl enable rh-python36 'pip install -U pip setuptools'
 RUN scl enable rh-python36 'pip install mock httmock coverage tox requests pytest'
-RUN su - jenkins rpmdev-setuptree
+USER jenkins:jenkins
+RUN rpmdev-setuptree
