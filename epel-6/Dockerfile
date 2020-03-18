@@ -7,12 +7,12 @@ FROM centos:centos6
 #COPY epel-6/files/tmp /tmp
 #RUN sed -i.original -e 's/^/#/' /etc/yum.repos.d/*.repo  && \
 #    rpm --import /tmp/*.pub
-RUN yum clean metadata && yum update && \
-    yum -y install rpmdevtools rpmlint \
+RUN yum clean metadata && yum -y update
+RUN yum -y install rpmdevtools rpmlint \
     rpm-build \
     openssh-clients \
-    yum-utils \
-    yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm && \
+    yum-utils 
+RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm && \
     yum -y install gcc \
     tar && \
     useradd -m jenkins
