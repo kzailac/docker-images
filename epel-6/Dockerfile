@@ -15,6 +15,7 @@ RUN yum -y install rpmdevtools rpmlint \
 RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm && \
     yum -y install gcc \
     tar && \
-    useradd -m jenkins
+    groupadd -g 1000 jenkins && \
+    useradd -m jenkins -u 1000 -g 1000
 COPY utils/build-rpm.sh /home/jenkins/build-rpm.sh
 RUN su - jenkins rpmdev-setuptree
