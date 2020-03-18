@@ -5,7 +5,7 @@ COPY epel-6/files/etc/rpm-repo.conf /root/scripts/rpm-repo.conf
 COPY epel-6/files/scripts/scp-upload.sh /root/scripts/scp-upload.sh
 COPY epel-6/files/tmp /tmp
 RUN rpm --import /tmp/*.pub && \
-    useradd jenkins
+    useradd -m jenkins
 COPY utils/build-rpm.sh /home/jenkins/build-rpm.sh
 RUN yum clean all && yum -y install \ 
     centos-release-scl \
