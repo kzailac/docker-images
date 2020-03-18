@@ -12,8 +12,8 @@ RUN yum clean metadata && yum update && \
     rpm-build \
     openssh-clients \
     yum-utils \
-    yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm && \
-    yum install -y gcc \
+    yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm && \
+    yum -y install gcc \
     tar && \
     useradd -m jenkins
 COPY utils/build-rpm.sh /home/jenkins/build-rpm.sh
