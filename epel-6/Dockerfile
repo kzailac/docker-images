@@ -16,4 +16,4 @@ RUN yum clean metadata && yum update && \
     gcc; yum clean all && \
     useradd -m jenkins
 COPY utils/build-rpm.sh /home/jenkins/build-rpm.sh
-RUN su - jenkins rpmdev-setuptree
+#RUN su - jenkins rpmdev-setuptree
