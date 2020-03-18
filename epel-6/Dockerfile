@@ -8,9 +8,12 @@ COPY epel-6/files/tmp /tmp
 RUN sed -i.original -e 's/^/#/' /etc/yum.repos.d/*.repo && \
     rpm --import /tmp/*.pub && \
     useradd -m jenkins
-RUN yum update && yum -y install rpmdevtools \
+RUN yum clean metadata && yum update && \
+    yum -y install rpmdevtools \
     rpm-build \
     epel-release \
-    openssh-clients; yum clean all
+    openssh-clients \
+    yum-utils \
+    gcc
 COPY utils/build-rpm.sh /home/jenkins/build-rpm.sh
 RUN su - jenkins rpmdev-setuptree
