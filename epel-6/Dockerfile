@@ -5,8 +5,9 @@ COPY epel-6/files/etc/rpm/macros.drb /etc/rpm/macros.drb
 COPY epel-6/files/etc/rpm-repo.conf /root/scripts/rpm-repo.conf
 COPY epel-6/files/scripts/scp-upload.sh /root/scripts/scp-upload.sh
 COPY epel-6/files/tmp /tmp
-RUN sed -i.original -e 's/^/#/' /etc/yum.repos.d/*.repo
-RUN yum clean metadata yum update && \
+RUN sed -i.original -e 's/^/#/' /etc/yum.repos.d/*.repo  && \
+    rpm --import /tmp/*.pub
+RUN yum clean metadata && yum update && \
     yum -y install rpmdevtools \
     rpm-build \
     epel-release \
