@@ -19,9 +19,12 @@ RUN yum makecache && yum -y install \
     python34-devel \
     python34-mock \
     rpmdevtools  \
+    rpmlint \
+    rpm-build \
     python2-devel \
     python2-setuptools \
-    python34-setuptools
+    python34-setuptools \
+    tar
 ADD epel-6-ams/files/etc/rpm-repo.conf /root/scripts/rpm-repo.conf
 ADD epel-6-ams/files/scripts/scp-upload.sh /root/scripts/scp-upload.sh
 RUN pip install httmock coverage=='4.5.4' unittest2 discover 
@@ -29,3 +32,7 @@ RUN scl enable python27 'pip install -U pip setuptools'
 RUN scl enable python27 'pip install mock httmock  tox requests pytest'
 RUN scl enable rh-python36 'pip install -U pip setuptools'
 RUN scl enable rh-python36 'pip install mock httmock  tox requests pytest'
+RUN groupadd -g 1000 jenkins && \
+    useradd -m jenkins -u 1000 -g 1000
+COPY utils/build-rpm.sh /home/jenkins/build-rpm.sh
+RUN su - jenkins rpmdev-setuptree && mkdir -p /tmp/rpmbuild
