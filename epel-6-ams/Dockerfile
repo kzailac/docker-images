@@ -35,4 +35,4 @@ RUN scl enable rh-python36 'pip install mock httmock  tox requests pytest'
 RUN groupadd -g 1000 jenkins && \
     useradd -m jenkins -u 1000 -g 1000
 COPY utils/build-rpm.sh /home/jenkins/build-rpm.sh
-RUN su - jenkins rpmdev-setuptree && mkdir -p /tmp/rpmbuild
+RUN su - jenkins rpmdev-setuptree
