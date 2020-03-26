@@ -21,6 +21,7 @@ RUN yum makecache && yum -y install \
     rpmdevtools  \
     rpmlint \
     rpm-build \
+    python-devel \
     python2-devel \
     python2-setuptools \
     python34-setuptools \
