@@ -1,0 +1,31 @@
+FROM centos:7
+MAINTAINER Themis Zamani themiszamani@gmail.com
+
+RUN yum -y install epel-release
+RUN yum -y makecache; yum -y update
+RUN yum install -y \
+        gcc \
+        git \
+        libffi \
+        libffi-devel \
+        modules \
+        openssl-devel \
+        python \
+        python-argparse \
+        python-devel \
+        python-pip \
+        python-requests \
+        tar \
+        wget
+RUN pip install \
+        argo_ams_library \
+        avro==1.9.1 \
+        cffi \
+        coverage==4.5.4 \
+        cryptography==2.1.4 \
+        discover \
+        httmock \
+        mock==2.0.0 \
+        pyOpenSSL \
+        setuptools \
+        unittest2
