@@ -26,11 +26,13 @@ RUN yum makecache && yum -y install \
     python2-setuptools \
     python34-setuptools \
     python36-devel \
-    python36-setuptools
+    python36-setuptools \
+    which
 RUN yum -y group install "Development Tools"
 ADD epel-7-ams/files/etc/rpm-repo.conf /root/scripts/rpm-repo.conf
 ADD epel-7-ams/files/scripts/scp-upload.sh /root/scripts/scp-upload.sh
-RUN pip install httmock coverage=='4.5.4' unittest2 discover 
+RUN pip install httmock coverage=='4.5.4' unittest2 discover
+RUN pip install -U pip "setuptools<45.0.0" && pip install pipenv
 RUN scl enable python27 'pip install -U pip setuptools'
 RUN scl enable python27 'pip install mock httmock tox requests pytest'
 RUN scl enable rh-python36 'pip install -U pip setuptools'
