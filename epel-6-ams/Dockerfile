@@ -25,7 +25,8 @@ RUN yum makecache && yum -y install \
     python2-setuptools \
     python34-setuptools \
     which \
-    tar
+    tar \
+    perl-devel
 ADD epel-6-ams/files/etc/rpm-repo.conf /root/scripts/rpm-repo.conf
 ADD epel-6-ams/files/scripts/scp-upload.sh /root/scripts/scp-upload.sh
 RUN pip install httmock coverage=='4.5.4' unittest2 discover 
