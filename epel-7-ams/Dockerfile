@@ -28,7 +28,8 @@ RUN yum makecache && yum -y install \
     python36-devel \
     python36-setuptools \
     which \
-    perl-devel
+    perl-devel \
+    perl-ExtUtils-MakeMaker
 RUN yum -y group install "Development Tools"
 ADD epel-7-ams/files/etc/rpm-repo.conf /root/scripts/rpm-repo.conf
 ADD epel-7-ams/files/scripts/scp-upload.sh /root/scripts/scp-upload.sh
