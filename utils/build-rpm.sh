@@ -62,7 +62,7 @@ rm -f ${workspace}/*.rpm
 cp /home/jenkins/rpmbuild/RPMS/**/*.rpm ${workspace}/
 
 # Upload artifacts to rpm-repo if branch is master or devel
-if [[ "${branch_name}" == "master" || "${branch_name}" == "devel" ]]; then
+if [[ "${branch_name}" == "master" || "${branch_name}" == "devel" || "${branch_name}" == "develop" ]]; then
     echo "Uploading rpm for ${release_env} ..."
     if [[ -z "${secretkey}" ]]; then
         scp -o StrictHostKeyChecking=no ${workspace}/*.rpm jenkins@rpm-repo.argo.grnet.gr:/repos/ARGO/${release_env}/${distribution}/
