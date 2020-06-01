@@ -45,7 +45,7 @@ fi
 # Set up Release env (devel|prod) for rpm-repo upload
 if [[ "${branch_name}" == "master" ]]; then
     release_env="prod"
-elif  [[ "${branch_name}" == "devel" ]]; then
+elif  [[ "${branch_name}" == "devel" || "${branch_name}" == "develop" ]]; then
     release_env="devel"
 fi
 
