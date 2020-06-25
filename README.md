@@ -14,7 +14,7 @@ This repo contains the docker images used for building argo project packages.
 Clone current repo and type the command bellow from docker-images directory.
 
 ```
-docker build -f <directory-image>/Dockerfile . --tag <name> -
+docker build -f <directory-image>/Dockerfile . --tag <name>
 ```
 
 Or if you want all images run
