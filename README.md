@@ -1,3 +1,5 @@
+[![Build Status](https://jenkins.einfra.grnet.gr/buildStatus/icon?job=ARGO%2Fdocker-images%2Fmaster)](https://jenkins.einfra.grnet.gr/job/ARGO/job/docker-images/job/master/)
+
 ![Image of GRnet](https://avatars0.githubusercontent.com/u/6882712?s=200&v=4)
 # Argo Docker Images
 
