@@ -41,7 +41,7 @@ RUN yum clean metadata && yum update && \
         rpmdevtools \
         rpmlint \
         bzr && \
-    pip install --upgrade pip --ignore-installed six pyparsing && \
+    pip install --upgrade pip==20.1.1 --ignore-installed six pyparsing && \
     pip install pytest mock pytest-cov && \
     wget https://storage.googleapis.com/golang/go1.15.linux-amd64.tar.gz && \
     tar -C /usr/local -xzf go1.15.linux-amd64.tar.gz
