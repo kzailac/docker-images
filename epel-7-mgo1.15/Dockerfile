@@ -15,6 +15,7 @@ RUN rpm --import /tmp/*.pub && \
     mkdir -p /home/jenkins/workspace/go/src
 
 COPY utils/build-rpm.sh /home/jenkins/build-rpm.sh
+COPY utils/checksec/checksec.py /home/jenkins/checksec.py
 
 # Install Packages
 RUN yum clean metadata && yum update && \
