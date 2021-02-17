@@ -30,6 +30,9 @@ RUN yum clean metadata && yum update && \
         openssh-clients \
         python-pip \
         python-coverage \
+        python3 \
+        openssl \
+        checksec \
         initscripts \
         git \
         pymongo \
