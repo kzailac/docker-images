@@ -54,7 +54,7 @@ fi
 echo 'Building rpm ...'
 cd ${workspace}/${project} && make sources
 cp ${workspace}/${project}/${project}*.tar.gz /home/jenkins/rpmbuild/SOURCES/
-if [[ "${branch_name}" != "master"  || "${branch_name}" != "main" ]]; then
+if [[ "${branch_name}" != "master"  && "${branch_name}" != "main" ]]; then
     sed -i 's/^Release.*/Release: %(echo $GIT_COMMIT_DATE).%(echo $GIT_COMMIT_HASH)%{?dist}/' ${workspace}/${project}/${project}.spec
 fi
 cd /home/jenkins/rpmbuild/SOURCES && tar -xzvf ${project}*.tar.gz
