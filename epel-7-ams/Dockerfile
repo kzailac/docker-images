@@ -8,10 +8,8 @@ RUN rpm --import /tmp/*.pub
 RUN yum clean all
 RUN yum -y install openssh-clients
 RUN yum -y install \ 
-    centos-release-scl \
     epel-release
 RUN yum makecache && yum -y install \
-    rh-python36-python-pip \
     python27 \
     python-pip \
     python-requests \
@@ -34,11 +32,9 @@ RUN yum -y group install "Development Tools"
 ADD epel-7-ams/files/etc/rpm-repo.conf /root/scripts/rpm-repo.conf
 ADD epel-7-ams/files/scripts/scp-upload.sh /root/scripts/scp-upload.sh
 RUN pip install httmock coverage=='4.5.4' unittest2 discover
-RUN pip install -U pip "setuptools<45.0.0" && pip install pipenv
-RUN scl enable python27 'pip install -U pip setuptools'
-RUN scl enable python27 'pip install mock httmock tox requests pytest'
-RUN scl enable rh-python36 'pip install -U pip setuptools'
-RUN scl enable rh-python36 'pip install mock httmock tox requests pytest'
+RUN pip install -U "pip==20.*" "setuptools<45.0.0" && pip install pipenv
+RUN pip3 install -U pip setuptools
+RUN pip3 install mock httmock tox requests pytest coverage
 RUN groupadd -g 1000 jenkins && \
     useradd -m jenkins -u 1000 -g 1000
 COPY utils/build-rpm.sh /home/jenkins/build-rpm.sh
