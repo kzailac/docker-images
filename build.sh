@@ -21,7 +21,7 @@ for d in */ ; do
         continue;
     fi
     # Build Docker image and tag version
-    docker build -f $IMAGE/Dockerfile . -t $IMAGE:latest
+    docker build -f $IMAGE/Dockerfile . -t $IMAGE:latest --no-cache
     docker tag $IMAGE:latest $IMAGE:$VERSION
     
     # Push to docker registry
