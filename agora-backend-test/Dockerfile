@@ -1,6 +1,6 @@
 FROM python:2.7.15
 
-RUN git clone -b 254-profiles-v4-0-resources-new-field-abbreviation https://github.com/grnet/agora-sp.git /home/agora-sp
+RUN git clone -b 255-profiles-4-0-move-hosting-legal-entity-in-providers-profile-to-basic-info-section https://github.com/grnet/agora-sp.git /home/agora-sp
 RUN mkdir /etc/agora && \
     mkdir -p /tmp/agora/agora_emails && \
     mkdir -p /srv/agora && \
