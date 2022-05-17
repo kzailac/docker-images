@@ -36,7 +36,7 @@ RUN pip install httmock coverage=='4.5.4' unittest2 discover
 RUN pip install -U "pip==20.*" "setuptools<45.0.0" && pip install pipenv
 RUN pip3 install -U pip setuptools
 RUN pip3 install mock httmock tox requests pytest coverage unittest-xml-reporting
-RUN yum install -y python3-aiohttp python3-bonsai
+RUN yum install -y python3-aiohttp python3-bonsai python3-aiofiles python3-avro
 RUN groupadd -g 1000 jenkins && \
     useradd -m jenkins -u 1000 -g 1000
 COPY utils/build-rpm.sh /home/jenkins/build-rpm.sh
