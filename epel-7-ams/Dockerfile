@@ -45,4 +45,10 @@ RUN yum install -y python3-aiohttp python3-bonsai python3-avro
 RUN groupadd -g 1000 jenkins && \
     useradd -m jenkins -u 1000 -g 1000
 COPY utils/build-rpm.sh /home/jenkins/build-rpm.sh
+USER jenkins
+WORKDIR /home/jenkins
+RUN curl https://pyenv.run | bash
+RUN source /etc/profile.d/pyenv.sh && pyenv install --list | grep ' 3.7' | tail -n1 | xargs pyenv install
+RUN source /etc/profile.d/pyenv.sh && pyenv install --list | grep ' 3.8' | tail -n1 | xargs pyenv install
+RUN source /etc/profile.d/pyenv.sh && pyenv install --list | grep ' 3.9' | tail -n1 | xargs pyenv install
 RUN su - jenkins rpmdev-setuptree
