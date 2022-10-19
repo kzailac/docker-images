@@ -36,6 +36,7 @@ RUN yum -y install \
 RUN yum -y group install "Development Tools"
 ADD epel-7-ams/files/etc/rpm-repo.conf /root/scripts/rpm-repo.conf
 ADD epel-7-ams/files/scripts/scp-upload.sh /root/scripts/scp-upload.sh
+ADD epel-7-ams/files/scripts/pyenv.sh /etc/profile.d/
 ADD epel-7-ams/files/etc/argo.repo /etc/yum.repos.d
 RUN pip install httmock coverage=='4.5.4' unittest2 discover
 RUN pip install -U "pip==20.*" "setuptools<45.0.0" && pip install pipenv
