@@ -28,6 +28,11 @@ RUN yum makecache && yum -y install \
     which \
     perl-devel \
     perl-ExtUtils-MakeMaker
+RUN yum -y install \
+    gcc \
+    zlib zlib-devel lzma xz-devel \
+    openssl-devel ncurses-devel bzip2-devel \
+    readline-devel libffi-devel sqlite-devel
 RUN yum -y group install "Development Tools"
 ADD epel-7-ams/files/etc/rpm-repo.conf /root/scripts/rpm-repo.conf
 ADD epel-7-ams/files/scripts/scp-upload.sh /root/scripts/scp-upload.sh
