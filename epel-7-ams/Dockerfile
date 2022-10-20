@@ -52,6 +52,10 @@ RUN curl https://pyenv.run | bash
 RUN source /etc/profile.d/pyenv.sh && pyenv install --list | grep ' 3.7' | tail -n1 | xargs pyenv install
 RUN source /etc/profile.d/pyenv.sh && pyenv install --list | grep ' 3.8' | tail -n1 | xargs pyenv install
 RUN source /etc/profile.d/pyenv.sh && pyenv install --list | grep ' 3.9' | tail -n1 | xargs pyenv install
+RUN source /etc/profile.d/pyenv.sh && pyenv install --list | grep 'mambaforge' | tail -n1 | xargs pyenv install
+RUN source /etc/profile.d/pyenv.sh && pyenv local $(pyenv versions | grep 'mambaforge' | head -n1)
+RUN source /etc/profile.d/pyenv.sh && mamba create -y -n ams-py310 python=3.10
+RUN source /etc/profile.d/pyenv.sh && pyenv local system
 USER root
 WORKDIR /root
 RUN su - jenkins rpmdev-setuptree
