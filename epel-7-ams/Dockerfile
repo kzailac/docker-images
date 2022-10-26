@@ -57,6 +57,7 @@ RUN source $HOME/pyenv.sh && pyenv install --list | grep 'mambaforge' | tail -n1
 RUN source $HOME/pyenv.sh && pyenv local $(pyenv versions | grep 'mambaforge' | head -n1)
 RUN source $HOME/pyenv.sh && mamba create -y -n ams-py310 python=3.10
 RUN source $HOME/pyenv.sh && pyenv local system
+RUN rm $HOME/.python-version
 USER root
 WORKDIR /root
 RUN su - jenkins rpmdev-setuptree
