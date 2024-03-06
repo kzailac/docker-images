@@ -32,6 +32,7 @@ RUN pip3 install mock httmock tox-current-env requests pytest coverage unittest-
 RUN dnf -y install python3-devel python3-setuptools python3-requests python3.11-devel python3.11-setuptools python3.11-requests
 RUN dnf -y install mock bc
 RUN useradd mockbuild
+COPY utils/build-rpm.sh /home/jenkins/build-rpm.sh
 USER jenkins
 WORKDIR /home/jenkins
 RUN git clone --depth=1 https://github.com/pyenv/pyenv.git .pyenv
