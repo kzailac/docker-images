@@ -1,5 +1,5 @@
 FROM rockylinux/rockylinux:9
-ADD files/tmp /tmp
+ADD epel-9-ams/files/tmp /tmp
 RUN rpm --import /tmp/*.pub
 RUN yum clean all
 RUN yum -y install \
@@ -25,9 +25,9 @@ RUN yum -y install \
 RUN yum -y group install "Development Tools"
 RUN groupadd -g 1000 jenkins && \
     useradd -m jenkins -u 1000 -g 1000
-ADD files/etc/rpm-repo.conf /root/scripts/rpm-repo.conf
-ADD files/scripts/scp-upload.sh /root/scripts/scp-upload.sh
-ADD files/scripts/pyenv.sh /home/jenkins/
+ADD epel-9-ams/files/etc/rpm-repo.conf /root/scripts/rpm-repo.conf
+ADD epel-9-ams/files/scripts/scp-upload.sh /root/scripts/scp-upload.sh
+ADD epel-9-ams/files/scripts/pyenv.sh /home/jenkins/
 RUN pip3 install -U pip setuptools
 RUN pip3 install mock httmock tox-current-env requests pytest coverage unittest-xml-reporting aiofiles lxml unidecode
 RUN dnf -y install python3-devel python3-setuptools python3-requests python3.11-devel python3.11-setuptools python3.11-requests
@@ -36,7 +36,7 @@ RUN useradd mockbuild
 USER jenkins
 WORKDIR /home/jenkins
 RUN git clone --depth=1 https://github.com/pyenv/pyenv.git .pyenv
-ENV HOME  /home/jenkins
+ENV HOME /home/jenkins
 ENV PYENV_ROOT $HOME/.pyenv
 ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
 RUN pyenv install 3.7.15 \

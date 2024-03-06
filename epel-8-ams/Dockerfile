@@ -1,5 +1,5 @@
 FROM rockylinux/rockylinux:8
-ADD files/tmp /tmp
+ADD epel-8-ams/files/tmp /tmp
 RUN rpm --import /tmp/*.pub
 RUN yum clean all
 RUN yum -y install openssh
@@ -26,9 +26,9 @@ RUN yum -y install \
 RUN yum -y group install "Development Tools"
 RUN groupadd -g 1000 jenkins && \
     useradd -m jenkins -u 1000 -g 1000
-ADD files/etc/rpm-repo.conf /root/scripts/rpm-repo.conf
-ADD files/scripts/scp-upload.sh /root/scripts/scp-upload.sh
-ADD files/scripts/pyenv.sh /home/jenkins/
+ADD epel-8-ams/files/etc/rpm-repo.conf /root/scripts/rpm-repo.conf
+ADD epel-8-ams/files/scripts/scp-upload.sh /root/scripts/scp-upload.sh
+ADD epel-8-ams/files/scripts/pyenv.sh /home/jenkins/
 RUN pip3 install -U pip setuptools
 RUN pip3 install mock httmock tox-current-env requests pytest coverage unittest-xml-reporting aiofiles lxml unidecode
 RUN dnf -y install python38-devel python38-setuptools python38-requests python39-devel python39-setuptools python39-requests python3.11-devel python3.11-setuptools python3.11-requests
