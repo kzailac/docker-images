@@ -1,6 +1,5 @@
 FROM rockylinux/rockylinux:8
 ADD epel-8-ams/files/tmp /tmp
-RUN rpm --import /tmp/*.pub
 RUN yum clean all
 RUN yum -y install openssh
 RUN yum -y install \

@@ -1,6 +1,5 @@
 FROM rockylinux/rockylinux:9
 ADD epel-9-ams/files/tmp /tmp
-RUN rpm --import /tmp/*.pub
 RUN yum clean all
 RUN yum -y install \
     epel-release
