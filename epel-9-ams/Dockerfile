@@ -35,17 +35,15 @@ RUN useradd mockbuild
 COPY utils/build-rpm.sh /home/jenkins/build-rpm.sh
 USER jenkins
 WORKDIR /home/jenkins
-RUN git clone --depth=1 https://github.com/pyenv/pyenv.git .pyenv
-ENV HOME /home/jenkins
-ENV PYENV_ROOT $HOME/.pyenv
-ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
-RUN pyenv install 3.7.15 \
-    && pyenv install 3.8.15 \
-    && pyenv install 3.9.15 \
-    && pyenv install 3.10 \
-    && pyenv install 3.11
-RUN pyenv rehash
-RUN pip3 install scons
+RUN curl https://pyenv.run | bash
+RUN mv $HOME/.pyenv $HOME/pyenv
+RUN source $HOME/pyenv.sh && pyenv install --list | grep ' 3.7' | tail -n1 | xargs pyenv install
+RUN source $HOME/pyenv.sh && pyenv install --list | grep ' 3.8' | tail -n1 | xargs pyenv install
+RUN source $HOME/pyenv.sh && pyenv install --list | grep ' 3.9' | tail -n1 | xargs pyenv install
+RUN source $HOME/pyenv.sh && pyenv install --list | grep ' 3.10' | tail -n1 | xargs pyenv install
+RUN source $HOME/pyenv.sh && pyenv install --list | grep ' 3.11' | tail -n1 | xargs pyenv install
+RUN source $HOME/pyenv.sh && pyenv local system
+RUN rm $HOME/.python-version
 USER root
 WORKDIR /
 RUN su - jenkins rpmdev-setuptree
