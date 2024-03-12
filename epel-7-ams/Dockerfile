@@ -43,7 +43,7 @@ ADD epel-7-ams/files/etc/argo.repo /etc/yum.repos.d
 RUN pip install httmock coverage=='4.5.4' unittest2 discover
 RUN pip install -U "pip==20.*" "setuptools<45.0.0" && pip install pipenv
 RUN pip3 install -U pip setuptools
-RUN pip3 install mock httmock tox tox-pyenv requests pytest coverage unittest-xml-reporting aiofiles lxml unidecode freezegun
+RUN pip3 install mock httmock tox tox-pyenv requests pytest coverage unittest-xml-reporting aiofiles lxml unidecode freezegun pyOpenSSL
 RUN yum install -y python3-aiohttp python3-bonsai python3-avro
 COPY utils/build-rpm.sh /home/jenkins/build-rpm.sh
 USER jenkins

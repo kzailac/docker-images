@@ -28,7 +28,7 @@ ADD epel-9-ams/files/etc/rpm-repo.conf /root/scripts/rpm-repo.conf
 ADD epel-9-ams/files/scripts/scp-upload.sh /root/scripts/scp-upload.sh
 ADD epel-9-ams/files/scripts/pyenv.sh /home/jenkins/
 RUN pip3 install -U pip setuptools
-RUN pip3 install mock httmock tox-current-env requests pytest coverage unittest-xml-reporting aiofiles lxml unidecode freezegun
+RUN pip3 install mock httmock tox-current-env requests pytest coverage unittest-xml-reporting aiofiles lxml unidecode freezegun pyOpenSSL
 RUN dnf -y install python3-devel python3-setuptools python3-requests python3.11-devel python3.11-setuptools python3.11-requests
 RUN dnf -y install mock bc
 RUN useradd mockbuild
