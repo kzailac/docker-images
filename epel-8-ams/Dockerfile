@@ -29,7 +29,7 @@ ADD epel-8-ams/files/etc/rpm-repo.conf /root/scripts/rpm-repo.conf
 ADD epel-8-ams/files/scripts/scp-upload.sh /root/scripts/scp-upload.sh
 ADD epel-8-ams/files/scripts/pyenv.sh /home/jenkins/
 RUN pip3 install -U pip setuptools
-RUN pip3 install mock httmock tox-current-env requests pytest coverage unittest-xml-reporting aiofiles lxml unidecode
+RUN pip3 install mock httmock tox-current-env requests pytest coverage unittest-xml-reporting aiofiles lxml unidecode freezegun
 RUN dnf -y install python38-devel python38-setuptools python38-requests python39-devel python39-setuptools python39-requests python3.11-devel python3.11-setuptools python3.11-requests
 RUN dnf -y install mock bc
 RUN useradd mockbuild
