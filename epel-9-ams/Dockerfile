@@ -31,6 +31,7 @@ RUN pip3 install -U pip setuptools
 RUN pip3 install mock httmock tox-current-env requests pytest coverage unittest-xml-reporting aiofiles lxml unidecode freezegun pyOpenSSL
 RUN dnf -y install python3-devel python3-setuptools python3-requests python3.11-devel python3.11-setuptools python3.11-requests
 RUN dnf -y install mock bc
+RUN dnf config-manager --set-enabled crb && dnf install -y perl-Monitoring-Plugin
 RUN useradd mockbuild
 COPY utils/build-rpm.sh /home/jenkins/build-rpm.sh
 USER jenkins
