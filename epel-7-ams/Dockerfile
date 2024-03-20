@@ -45,6 +45,7 @@ RUN pip install -U "pip==20.*" "setuptools<45.0.0" && pip install pipenv
 RUN pip3 install -U pip setuptools
 RUN pip3 install mock httmock tox tox-pyenv requests pytest coverage unittest-xml-reporting aiofiles lxml unidecode freezegun pyOpenSSL
 RUN yum install -y python3-aiohttp python3-bonsai python3-avro
+RUN yum install -y perl-Monitoring-Plugin
 COPY utils/build-rpm.sh /home/jenkins/build-rpm.sh
 USER jenkins
 WORKDIR /home/jenkins

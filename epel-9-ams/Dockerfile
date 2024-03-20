@@ -46,4 +46,5 @@ RUN source $HOME/pyenv.sh && pyenv local system
 RUN rm $HOME/.python-version
 USER root
 WORKDIR /
+RUN dnf config-manager --set-enabled crb && dnf install -y perl-Monitoring-Plugin
 RUN su - jenkins rpmdev-setuptree

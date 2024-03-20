@@ -5,7 +5,7 @@ COPY epel-7-perl/files/scripts/scp-upload.sh /root/scripts/scp-upload.sh
 RUN rpm --import /tmp/*.pub
 RUN yum update; yum clean all
 RUN yum -y install openssh-clients openssl
-RUN yum -y install \ 
+RUN yum -y install \
     centos-release-scl \
     epel-release
 RUN yum makecache && yum -y install \
@@ -56,6 +56,7 @@ RUN yum makecache && yum -y install \
     perl-Params-Validate \
     perl-PlRPC \
     perl-Pod-Coverage \
+    perl-Monitoring-Plugin \
     perl-Pod-Parser \
     perl-Sub-Uplevel \
     perl-Sys-Syslog \
