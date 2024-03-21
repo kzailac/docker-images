@@ -32,7 +32,7 @@ RUN pip3 install mock httmock tox-current-env requests pytest coverage unittest-
 RUN dnf -y install python3-devel python3-setuptools python3-requests python3.11-devel python3.11-setuptools python3.11-requests
 RUN dnf -y install mock bc
 RUN dnf config-manager --set-enabled crb && dnf install -y \
-		perl-generators \
+    perl-generators \
     perl-Config-General \
     perl-Crypt-OpenSSL-RSA \
     perl-Crypt-OpenSSL-X509 \
