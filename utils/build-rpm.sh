@@ -78,3 +78,4 @@ if [[ "${branch_name}" == "master" || "${branch_name}" == "main" || "${branch_na
         ssh -i ${secretkey} -o StrictHostKeyChecking=no jenkins@rpm-repo.argo.grnet.gr createrepo --update /repos/ARGO/${release_env}/${distribution}/
     fi
 fi
+make clean
