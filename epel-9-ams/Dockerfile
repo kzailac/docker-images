@@ -47,6 +47,13 @@ RUN dnf config-manager --set-enabled crb && dnf install -y \
     perl-Test-Pod \
     perl-Test-Pod-Coverage \
     perl-TimeDate
+RUN python3.9 -m venv /opt/poetry-tool/
+RUN sh -c '\
+  . /opt/poetry-tool/bin/activate \
+  && pip install -U pip \
+  && pip install -U pip setuptools \
+  && pip install -U poetry'
+ADD epel-9-ams/files/scripts/poetry-path.sh /etc/profile.d
 RUN useradd mockbuild
 COPY utils/build-rpm.sh /home/jenkins/build-rpm.sh
 USER jenkins
