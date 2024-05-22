@@ -1,27 +1,27 @@
 FROM rockylinux/rockylinux:9
 ADD epel-9-ams/files/tmp /tmp
-RUN yum clean all
-RUN yum -y install \
+RUN dnf clean all
+RUN dnf -y install \
     epel-release
-RUN yum -y install openssh
-RUN yum makecache
-RUN yum install -y rpmdevtools rpmlint rpm-build
-RUN yum -y install \
+RUN dnf -y install openssh
+RUN dnf makecache
+RUN dnf install -y rpmdevtools rpmlint rpm-build
+RUN dnf -y install \
     python-pip \
     python-requests \
     python-devel \
     which \
     perl-devel \
     perl-ExtUtils-MakeMaker
-RUN yum install -y sudo
-RUN yum install -y git
+RUN dnf install -y sudo
+RUN dnf install -y git
 RUN dnf install -y epel-release
-RUN yum -y install \
+RUN dnf -y install \
     gcc \
     zlib zlib-devel lzma xz-devel \
     openssl-devel ncurses-devel bzip2-devel \
     readline-devel libffi-devel sqlite-devel
-RUN yum -y group install "Development Tools"
+RUN dnf -y group install "Development Tools"
 RUN groupadd -g 1000 jenkins && \
     useradd -m jenkins -u 1000 -g 1000
 ADD epel-9-ams/files/etc/rpm-repo.conf /root/scripts/rpm-repo.conf
@@ -51,7 +51,7 @@ RUN python3.9 -m venv /opt/poetry-tool/
 RUN sh -c '\
   . /opt/poetry-tool/bin/activate \
   && pip install -U pip \
-  && pip install -U pip setuptools \
+  && pip install setuptools==69.2.0 \
   && pip install -U poetry'
 ADD epel-9-ams/files/scripts/poetry-path.sh /etc/profile.d
 RUN useradd mockbuild
