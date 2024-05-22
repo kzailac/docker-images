@@ -1,3 +1,3 @@
 #!/bin/bash
 
-export PATH=/opt/poetry-tool/bin:$PATH
+export PATH=$PATH:/opt/poetry-tool/bin
