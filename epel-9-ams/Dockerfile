@@ -51,7 +51,7 @@ RUN python3.9 -m venv /opt/poetry-tool/
 RUN sh -c '\
   . /opt/poetry-tool/bin/activate \
   && pip install -U pip \
-  && pip install -U pip setuptools \
+  && pip install setuptools==69.2.0 \
   && pip install -U poetry'
 ADD epel-9-ams/files/scripts/poetry-path.sh /etc/profile.d
 RUN useradd mockbuild
