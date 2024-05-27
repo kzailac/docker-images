@@ -45,4 +45,4 @@ RUN go install github.com/axw/gocov/gocov@latest
 RUN go install github.com/AlekSi/gocov-xml@latest
 RUN go install github.com/jstemmer/go-junit-report/v2@latest
 
-CMD ["/usr/bin/mongod", "--bind_ip_all"]
+RUN mongod --fork --logpath /var/log/mongodb.log
