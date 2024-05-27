@@ -1,20 +1,17 @@
 FROM rockylinux:9
 
+RUN yum update -y && \
+    yum install -y wget tar gcc-c++ make git sudo && \
+    yum clean all
+
 RUN useradd -ms /bin/bash jenkins \
     && echo 'jenkins ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
-
-RUN yum update -y && \
-    yum install -y wget tar gcc-c++ make git && \
-    yum clean all
 
 ENV GO_SRC=go1.22.3.linux-amd64.tar.gz
 ENV GO_URL=https://golang.org/dl/$GO_SRC
 
-
-RUN mkdir -p /home/jenkins/go && chown -R jenkins:jenkins /home/jenkins/go
-RUN mkdir -p /data/db && chown -R jenkins:jenkins /data/db
-
+RUN mkdir -p /home/jenkins/go
+RUN mkdir -p /data/db
 
 RUN wget $GO_URL && \
     tar -C /usr/local -xzf $GO_SRC && \
@@ -32,7 +29,6 @@ EOF
 RUN yum install -y mongodb-org && \
     yum clean all
 
-
 ENV GOPATH=/home/jenkins/go
 ENV PATH=$GOPATH/bin:/usr/local/go/bin:$PATH
 
@@ -45,4 +41,5 @@ RUN go install github.com/axw/gocov/gocov@latest
 RUN go install github.com/AlekSi/gocov-xml@latest
 RUN go install github.com/jstemmer/go-junit-report/v2@latest
 
-RUN mongod --fork --logpath /var/log/mongodb.log
+RUN chown -R jenkins:jenkins /data/db
+RUN chown -R jenkins:jenkins /home/jenkins/go
