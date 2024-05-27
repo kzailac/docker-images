@@ -42,6 +42,7 @@ RUN echo PATH=$GOPATH/bin:/usr/local/go/bin:$PATH >> /home/jenkins/.bashrc
 RUN go version
 
 RUN go install github.com/axw/gocov/gocov@latest
+RUN go install github.com/AlekSi/gocov-xml@latest
 RUN go install github.com/jstemmer/go-junit-report/v2@latest
 
 CMD ["/usr/bin/mongod", "--bind_ip_all"]
