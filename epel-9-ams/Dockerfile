@@ -53,7 +53,6 @@ RUN sh -c '\
   && pip install -U pip \
   && pip install setuptools==69.2.0 \
   && pip install -U poetry'
-ADD epel-9-ams/files/scripts/poetry-path.sh /etc/profile.d
 RUN useradd mockbuild
 COPY utils/build-rpm.sh /home/jenkins/build-rpm.sh
 USER jenkins
