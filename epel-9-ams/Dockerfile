@@ -20,7 +20,7 @@ RUN dnf -y install \
     gcc \
     zlib zlib-devel lzma xz-devel \
     openssl-devel ncurses-devel bzip2-devel \
-    readline-devel libffi-devel sqlite-devel
+    openldap-devel readline-devel libffi-devel sqlite-devel
 RUN dnf -y group install "Development Tools"
 RUN groupadd -g 1000 jenkins && \
     useradd -m jenkins -u 1000 -g 1000
