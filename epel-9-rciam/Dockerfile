@@ -12,7 +12,6 @@ RUN yum makecache && yum -y install \
     python3-pip \
     python3-devel \
     python3-requests \
-    python3-mock \
     python3-setuptools \
     rpmdevtools  \
     rpmlint \
