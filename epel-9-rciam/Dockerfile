@@ -1,4 +1,7 @@
 FROM rockylinux/rockylinux:9
+
+ADD epel-9-rciam/files/tmp /tmp
+RUN rpm --import /tmp/*.pub
 RUN yum clean all
 RUN yum -y install \ 
     openssh-clients \
@@ -9,6 +12,10 @@ RUN yum makecache && yum -y install \
     python3-pip \
     python3-devel \
     python3-requests \
+    python3-setuptools \
+    python3-isodate \
+    python3-rdflib \
+    python3-selenium \
     rpmdevtools  \
     rpmlint \
     rpm-build \
