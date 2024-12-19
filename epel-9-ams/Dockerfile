@@ -20,7 +20,7 @@ RUN dnf -y install \
     gcc \
     zlib zlib-devel lzma xz-devel \
     openssl-devel ncurses-devel bzip2-devel \
-    readline-devel libffi-devel sqlite-devel
+    openldap-devel readline-devel libffi-devel sqlite-devel
 RUN dnf -y group install "Development Tools"
 RUN groupadd -g 1000 jenkins && \
     useradd -m jenkins -u 1000 -g 1000
@@ -53,7 +53,7 @@ RUN sh -c '\
   && pip install -U pip \
   && pip install setuptools==69.2.0 \
   && pip install -U poetry'
-ADD epel-9-ams/files/scripts/poetry-path.sh /etc/profile.d
+RUN ln -s /opt/poetry-tool/bin/poetry /usr/local/bin/
 RUN useradd mockbuild
 COPY utils/build-rpm.sh /home/jenkins/build-rpm.sh
 USER jenkins
